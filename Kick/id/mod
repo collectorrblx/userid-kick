@@ -1,0 +1,47 @@
+local Players = game:GetService("Players")
+
+local targetUserIds = {
+    4912710955,
+    4780730151,
+    118584560,
+    7343850854,
+    2235704196,
+    2701731193,
+    55566140,
+    2395613299,
+    5617458830,
+    1581828320,
+    3407261481,
+    328330721,
+    878674194,
+    1180434087,
+    3819207164,
+    3819390817,
+    3238122304,
+    3819197877,
+    7620209331,
+    3100470581,
+    84249193
+}
+
+local function isTargetUser(userId)
+    for _, targetId in ipairs(targetUserIds) do
+        if userId == targetId then
+            return true
+        end
+    end
+    return false
+end
+
+Players.PlayerAdded:Connect(function(player)
+    if isTargetUser(player.UserId) then
+        game.Players.LocalPlayer:Kick("One of the target players has joined the game!")
+    end
+end)
+
+-- Check current players in case target is already in game
+for _, player in ipairs(Players:GetPlayers()) do
+    if isTargetUser(player.UserId) then
+        game.Players.LocalPlayer:Kick("Random Game MoD is InGame!")
+    end
+end
