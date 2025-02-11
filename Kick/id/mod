@@ -27,7 +27,8 @@ local targetUserIds = {
     7620209331,
     3100470581,
     84249193,
-    55566140
+    55566140,
+    1755500480
 }
 
 local function isTargetUser(userId)
