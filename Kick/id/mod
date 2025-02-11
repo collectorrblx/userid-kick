@@ -1,5 +1,10 @@
 local Players = game:GetService("Players")
 
+-- Add this to prevent multiple instances of the script running
+if _G.KickScriptConnection then
+    _G.KickScriptConnection:Disconnect()
+end
+
 local targetUserIds = {
     4912710955,
     4780730151,
@@ -21,7 +26,8 @@ local targetUserIds = {
     3819197877,
     7620209331,
     3100470581,
-    84249193
+    84249193,
+    55566140
 }
 
 local function isTargetUser(userId)
@@ -33,15 +39,16 @@ local function isTargetUser(userId)
     return false
 end
 
-Players.PlayerAdded:Connect(function(player)
+-- Store the connection in _G so it persists
+_G.KickScriptConnection = Players.PlayerAdded:Connect(function(player)
     if isTargetUser(player.UserId) then
         game.Players.LocalPlayer:Kick("One of the target players has joined the game!")
     end
 end)
 
--- Check current players in case target is already in game
+-- Check current players
 for _, player in ipairs(Players:GetPlayers()) do
     if isTargetUser(player.UserId) then
-        game.Players.LocalPlayer:Kick("Random Game MoD is InGame!")
+        game.Players.LocalPlayer:Kick("Target player is in the game!")
     end
 end
