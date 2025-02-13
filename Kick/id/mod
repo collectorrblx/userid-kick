@@ -45,13 +45,13 @@ end
 -- Store the connection in _G so it persists
 _G.KickScriptConnection = Players.PlayerAdded:Connect(function(player)
     if isTargetUser(player.UserId) then
-        game.Players.LocalPlayer:Kick("One of the target players has joined the game!")
+        game.Players.LocalPlayer:Kick("❌ mod ingamee server hop ❌")
     end
 end)
 
 -- Check current players
 for _, player in ipairs(Players:GetPlayers()) do
     if isTargetUser(player.UserId) then
-        game.Players.LocalPlayer:Kick("Target player is in the game!")
+        game.Players.LocalPlayer:Kick("❌ mod ingamee server hop ❌")
     end
 end
